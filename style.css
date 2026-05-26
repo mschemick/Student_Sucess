@@ -593,4 +593,14 @@ body {
   .page-header h2 {
     font-size: 26px;
   }
+
+  .chart-card,
+  .chart-container,
+  canvas {
+    max-width: 100%;
+  }
+
+  .chart-container {
+    overflow: hidden;
+  }
 }
