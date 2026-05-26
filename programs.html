@@ -1,0 +1,193 @@
+<!Doctype html>
+<html lang="en">
+<head>
+    <mmeta charset="UTF-8"/>
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0"/>
+    <title>Programs | Student Success Analytics</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+    <div class="app-layout">
+
+        <aside class="sidebar">
+            <div class="college-logo">
+                <div class="logo-icon">N</div>
+                <div>
+                    <h2>Northwood</h2>
+                    <p>Community College</p>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="index.html">Dashboard Overview</a>
+                <a href="programs.html" class="active">Programs</a>
+                <a href="enrollment.html">Enrollment</a>
+                <a href="retention.html">Retention</a>
+                <a href="completion.html">Completion</a>
+                <a href="demographic.html">demographics</a>
+                <a href="student-risk.html">At-Risk Students</a>
+                <a href="reports.html">Reports</a>
+            </nav>
+        </aside>
+
+        <div class="main-area">
+            <header class="topbar">
+                <h1>Student Success Analytics</h1>
+
+                <nav class="top-nav">
+                    <a href="index.html">Overview</a>
+                    <a href="programs.html" class="active">Programs</a>
+                    <a href="student-risk.html">At-Risk Students</a>
+                    <a href="reports.html">Reports</a>
+                </nav>
+            </header>
+
+            <main class="dashboard">
+
+                <section class="page-header">
+                    <h2>Program Performance</h2>
+                    <p>Review enrollment, retention, and student success indicators across academic programs</p>
+                </section>
+
+                <section class="kpi-grid">
+
+                    <article class="kpi-card">
+                        <div class="kpi-icon">📚</div>
+                        <div>
+                            <p class="kpi-label">Total Programs</p>
+                            <h3 id="totalPrograms">0</h3>
+                            <p class="kpi-change positive">Active academic programs</p>
+                        </div>
+                    </article>
+
+                    <article class="kpi-card">
+                        <div class="kpi-icon">👥</div>
+                        <div>
+                            <p class="kpi-label">Largest Program</p>
+                            <h3 id="largestProgram">--</h3>
+                            <p class="kpi-change positive">By enrollment</p>
+                        </div>
+                    </article>
+
+                    <article class="kpi-card">
+                        <div class="kpi-icon">🎓</div>
+                        <div>
+                            <p class="kpi-label">Avg Retention</p>
+                            <h3 id="averageRetention">0%</h3>
+                            <p class="kpi-change positive">Across all programs</p>
+                        </div>
+                    </article>
+
+                    <article class="kpi-card">
+                        <div class="kpi-icon warning">⚠️</div>
+                        <div>
+                            <p class="kpi-label">Low Retention</p>
+                            <h3 id="lowRetentionPrograms">0</h3>
+                            <p class="kpi-change negative">Below 70%</p>
+                        </div>
+                    </article>
+                </section>
+
+                <section class="chart-grid">
+                    <article class="chart-card">
+                        <div class="card-header">
+                            <h3>Retention by Program</h3>
+                            <p>Comparison of retention rates across academic programs.</p>
+                        </div>
+
+                        <div class="chart-container">
+                            <canvas id="programRetentionChart"></canvas>
+                        </div>
+                    </article>
+
+                    <article class="chart-card">
+                        <div class="card-header">
+                            <h3>Enrollment by Program</h3>
+                            <p>Top programs ranked by student enrollment.</p>
+                        </div>
+
+                        <div class="chart-container">
+                            <canvas id="programEnrollmentChart"></canvas>
+                        </div>
+                    </article>
+                </section>
+
+                <section class="chart-grid">
+                    <article class="chart-card">
+                        <div class="card-header">
+                            <h3>Program Health Distribution</h3>
+                            <p>Programs Grouped by retention performance status.</p>
+                        </div>
+                        <div class="program-health-layout">
+                            <div class="chart-container">
+                                <canvas id="programHealthChart"></canvas>
+                            </div>
+                            <div class="health-breakdown">
+                                <div class="health-item strong-item">
+                                    <h4>Strong Programs</h4>
+                                    <span id="strongProgramsCount">0</span>
+                                </div>
+                                <div class="health-item stable-item">
+                                    <h4>Stable Programs</h4>
+                                    <span id="stableProgramsCount">0</span>
+                                </div>
+                                <div class="health-item review-item">
+                                    <h4>Needs Review</h4>
+                                    <span id="reviewProgramsCount">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <div class="watchlist-card">
+                        <div class="card-header">
+                            <h3>Program Watchlist</h3>
+                            <p>
+                                Programs currently below retention targets.
+                            </p>
+                        </div>
+                        <div id="programWatchlist"></div>
+                    </div>
+                </section>
+
+                <section class="bottom-grid">
+                    <article class="table-card">
+                        <div class="card-header">
+                            <h3>Program Details</h3>
+                            <p>Programs ranked by student enrollment.</p>
+                        </div>
+
+                        <table class="student-table">
+                            <thead>
+                                <tr>
+                                    <th>Program</th>
+                                    <th>Students</th>
+                                    <th>Retention</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="programTableBody"></tbody>
+                        </table>
+                    </article>
+
+                    <article class="program-card">
+                        <div class="card-header">
+                            <h3>Top Retention Programs</h3>
+                            <p>Highest-performing programs by retention rate</p>
+                        </div>
+
+                        <div class="program-list" id="topRetentionList"></div>
+                    </article>
+                </section>
+
+            </main>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="data.js"></script>
+    <script src="programs.js"></script>
+</body>
+</html>

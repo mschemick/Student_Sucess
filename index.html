@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width", initial-scale="1.0" />
+    <title>Student Success Analytics</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+    <div class="app-layout">
+
+        <!-- Left sidebar navigation -->
+         <aside class="sidebar">
+            <div class="college-logo">
+                <div class="logo-icon">N</div>
+                <div>
+                    <h2>Northwood</h2>
+                    <p>Community College</p>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="index.html" class="active">Dashboard Overview</a>
+                <a href="programs.html">Programs</a>
+                <a href="enrollment.html">Enrollment</a>
+                <a href="retention.html">Retention</a>
+                <a href="completion.html">Completion</a>
+                <a href="demographic.html">Demographics</a>
+                <a href="student-risk.html">At-Risk Students</a>
+                <a href="reports.html">Reports</a>
+            </nav>
+         </aside>
+
+         <!-- Right Side of the app -->
+         <div class="main-area">
+
+            <!--Top Navigation bar -->
+
+            <header class="topbar">
+                <h1> Student Success Analytics</h1>
+
+                <nav class="top-nav">
+                    <a href="index.html" class="active">Overview</a>
+                    <a href="programs.html">Programs</a>
+                    <a href="student-risk.html">At-Risk Students</a>
+                    <a href="reports">Reports</a>
+                </nav>
+            </header>
+
+            <!--Main Dashboard -->
+            <main class="dashboard">
+                <section class="page-header">
+                    <h2>Student Success Dashboard</h2>
+                    <p>Monitor enrollment, retention, completion, and at-risk Student trends</p>
+                </section>
+                <section class="filter-bar">
+                    <div>
+                        <label for="programFilter">Filter by Program</label>
+                        <select id="programFilter">
+                            <option value="all">All Programs</option>
+                        </select>
+                    </div>
+                </section>
+                <section class="kpi-grid">
+                    <article class="kpi-card">
+                        <div class="kpi-icon">👥</div>
+                        <div>
+                            <p class="kpi-label">Total Students</p>
+                            <h3 id="totalStudents">0</h3>
+                            <p class="kpi-change positive">↗ 3.6% vs Fall 2025</p>
+                        </div>
+                    </article>
+
+                    <article class="kpi-card">
+                        <div class="kpi-icon">🎓</div>
+                        <div>
+                            <p class="kpi-label">Retention Rate</p>
+                            <h3 id="retentionRate">0</h3>
+                            <p class="kpi-change positive">↗ 2.8% vs Fall 2025</p>
+                        </div>
+                    </article>
+
+                    <article class="kpi-card">
+                        <div class="kpi-icon">🏅</div>
+                        <div>
+                            <p class="kpi-label">Completion Rate</p>
+                            <h3 id="completionRate">0</h3>
+                            <p class="kpi-change positive">↗ 1.9% vs Fall 2025</p>
+                        </div>
+                    </article>
+
+                    <article class="kpi-card">
+                        <div class="kpi-icon">⚠️</div>
+                        <div>
+                            <p class="kpi-label">At-Risk Students</p>
+                            <h3 id="atRiskStudents">0</h3>
+                            <p class="kpi-change negative">↗ 5.3% vs Fall 2025</p>
+                        </div>
+                    </article>
+                </section>
+                <section class="chart-grid">
+                    <article class="chart-card">
+                        <div class="card-header">
+                            <h3>Enrollment Trend</h3>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="enrollmentChart"></canvas>
+                        </div>
+                    </article>
+                    
+                    <article class="chart-card">
+                        <div class="card-header">
+                            <h3>Retention Rate by Term</h3>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="retentionChart"></canvas>
+                        </div>
+                    </article>
+                </section>
+                <section class="bottom-grid">
+                    <article class="table-card">
+                        <div class="card-header">
+                            <h3>At-Risk Students Preview</h3>
+                            <p>Students flagged for possible support outreac</p>
+                        </div>
+
+                        <table class="student-table">
+                            <thead>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Program</th>
+                                    <th>GPA</th>
+                                    <th>Risk</th>
+                                </tr>
+                            </thead>
+                            <tbody id="atRiskTableBody">
+                            </tbody>
+                        </table>
+                    </article>
+
+                    <article class="program-card">
+                        <div class="card-header">
+                            <h3>Program Snapshot</h3>
+                            <p>Quick view of program enrollment and retention.</p>
+                        </div>
+
+                        <div class="program-list" id="programList"></div>>
+                    </article>
+                </section>
+            </main>
+         </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

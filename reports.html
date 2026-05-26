@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reports | Student Success Analytics</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="college-logo">
+                <div class="logo-icon">N</div>
+                <div>
+                    <h2>Northwood</h2>
+                    <p>Community College</p>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="index.html">Dashboard Overview</a>
+                <a href="programs.html">Programs</a>
+                <a href="enrollment.html">Enrollment</a>
+                <a href="retention.html">Retention</a>
+                <a href="completion.html">Completion</a>
+                <a href="demographic.html">Demographics</a>
+                <a href="student-risk.html">At-Risk Students</a>
+                <a href="reports.html" class="active">Reports</a>
+            </nav>
+        </aside>
+
+        <div class="main-area">
+            <header class="topbar">
+                <h1>Student Success Analytics</h1>
+                
+                <nav class="top-nav">
+                    <a href="index.html">Overview</a>
+                    <a href="programs.html">Programs</a>
+                    <a href="demographics.html">Demographics</a>
+                    <a href="reports.html" class="active">Reports</a>
+                </nav>
+            </header>
+
+            <main class="dashboard">
+
+                <section class="page-header">
+                    <h2>Executive Reports</h2>
+                    <p>
+                        Review High-Level institutional trends, performance iniidcators,
+                        and student success summaries.
+                    </p>
+                </section>
+
+                <section class="filter-bar">
+                    <div>
+                        <label for="reportTerm">Report Term</label>
+                        <select id="reportTerm">
+                            <option>Fall 2025</option>
+                            <option>Spring 2025</option>
+                            <option>Fall 2024</option>
+                        </select>
+                    </div>
+
+                    <button class="report-btn">Export Summary</button>
+                </section>
+
+                <!--Kpi Cards-->
+
+                <section class="kpi-grid">
+
+                    <article class="kpi-card">
+                        <div class="kpi-icon">👥</div>
+                        <div>
+                            <p class="kpi-label">Total Students</p>
+                            <h3 id="reportTotalStudents">0</h3>
+                            <p class="kpi-change positive">Current enrollment</p>
+                        </div>
+                    </article>
+
+                    <article class="kpi-card">
+                        <div class="kpi-icon">🎓</div>
+                        <div>
+                            <p class="kpi-label">Current Retention</p>
+                            <h3 id="reportRetention">0%</h3>
+                            <p class="kpi-change positive">Fall 2025</p>
+                        </div>
+                    </article>
+
+                    <article class="kpi-card">
+                        <div class="kpi-icon">📈</div>
+                        <div>
+                            <p class="kpi-label">Avg Completion</p>
+                            <h3 id="reportCompletion">0%</h3>
+                            <p class="kpi-change positive">Estimated outcome</p>
+                        </div>
+                    </article>
+
+                    <article class="kpi-card">
+                        <div class="kpi-icon warning">⚠️</div>
+                        <div>
+                            <p class="kpi-label">High Risk Students</p>
+                            <h3 id="reportHighRisk">0</h3>
+                            <p class="kpi-change negative">Immediate attention</p>
+                        </div>
+                    </article>        
+                </section>
+
+                <!-- Charts-->
+
+                <sectino class="chart-grid">
+
+                    <article class="chart-card">
+                        <div class="card-header">
+                            <h3>Enrollment trend Snapshot</h3>
+                            <p>Recent enrollment movement by Term</p>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="reportEnrollmentChart"></canvas>
+                        </div>
+                    </article>
+
+                    <article class="chart-card">
+                        <div class="card-header">
+                            <h3>Institutional Health Snapshot</h3>
+                            <p>Compariison of key student success indicators</p>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="reportRetentionChart"></canvas>
+                        </div>
+                    </article>
+                </sectino>
+
+                <!-- Summary Cards -->
+
+                <section class="summary-grid">
+                    <article class="summary-card">
+                        <h3>Enrollment Summary</h3>
+                        <p>
+                            Enrollment remains stable across recent academic terms,
+                            with continued strength in high-demand programs.
+                        </p>
+                        <div class="summary-meta">
+                            <span>Trend: ▲ increasing</span>
+                            <span>Total Students: 2,845</span>
+                        </div>
+                    </article>
+
+                    <article class="summary-card">
+                        <h3>Retention Summary</h3>
+                        <p>
+                            Institutional retention rates continue above benchmark,
+                            supported by strong student persistence initiatives.
+                        </p>
+                        <div class="summary-meta">
+                            <span>Trend: ▲ improving</span>
+                            <span>Retention: 78%</span>
+                        </div>
+                    </article>
+
+                    <article class="summary-card">
+                        <h3>Completion Summary</h3>
+                        <p>
+                            Completion outcomes vary across programs, with several
+                            departments outperforming institutional averages.
+                        </p>
+                        <div class="summary-meta">
+                            <span>Trend: ▼ Mixed</span>
+                            <span>Completion: 53%</span>
+                        </div>
+                    </article>
+
+                    <article class="summary-card">
+                        <h3>Student Risk Summary</h3>
+                        <p>
+                            High-risk student populations contine to require
+                            proactive advising and academic intervention support.
+                        </p>
+                        <div class="summary-meta">
+                            <span>Trend: ▲ increasing</span>
+                            <span>High Risk: 214</span>
+                        </div>
+                    </article>
+                </section>
+
+                <section class="bottom-grid">
+
+                    <article class="table-card">
+                        <div class="card-header">
+                            <h3>Institutional Summary Report</h3>
+                            <p>Key report areas, current status, and leadership notes.</p>
+                        </div>
+                        <table class="student-table">
+                            <thead>
+                                <tr>
+                                    <th>Report Arrea</th>
+                                    <th>Key Metric</th>
+                                    <th>Status</th>
+                                    <th>Trend</th>
+                                </tr>
+                            </thead>
+                            <tbody id="reportTableBody"></tbody>
+                        </table>
+                    </article>
+                </section>
+            </main>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="data.js"></script>
+    <script src="reports.js"></script>
+</body>
+</html>

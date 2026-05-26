@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>At-Risk Students | Student Success Analytics</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="college-logo">
+                <div class="logo-icon">N</div>
+                <div>
+                    <h2>Northwood</h2>
+                    <p>Community College</p>
+                </div>
+            </div>
+             <nav class="sidebar-nav">
+                <a href="index.html">Dashboard Overview</a>
+                <a href="programs.html">Programs</a>
+                <a href="enrollment.html">Enrollment</a>
+                <a href="retention.html">Retention</a>
+                <a href="completion.html">Completion</a>
+                <a href="demographic.html">Demographics</a>
+                <a href="student-risk.html" class="active">At-Risk Students</a>
+                <a href="reports.html">Reports</a>
+            </nav>
+        </aside>
+
+        <div class="main-area">
+            <header class="topbar">
+                <h1>Student Success Analytics</h1>
+                <nav class="top-nav">
+                    <a href="index.html">Overview</a>
+                    <a href="programs.html">Programs</a>
+                    <a href="student-risk.html" class="active">At-Risk Students</a>
+                    <a href="reports.html">Reports</a>
+                </nav>
+            </header>
+
+            <main class="dashboard">
+                <section class="page-header">
+                    <h2>At-Risk Student Analytics</h2>
+                    <p>
+                        Identiify high-risk students, monitor GPA concerns,
+                        and trrack interventiion priorrities across programs.
+                    </p>
+                </section>
+
+                <!--KPI Cards-->
+
+                <section class="kpi-grid">
+                    
+                    <article class="kpi-card">
+                        <div class="kpi-icon warning">⚠️</div>
+                        <div>
+                            <p class="kpi-label">High Risk Students</p>
+                            <h3 id="highRiskStudents">0</h3>
+                            <p class="kpi-change negative">Immediate intervention</p>
+                        </div>
+                    </article>
+
+                    <article class="kpi-card">
+                        <div class="kpi-icon">📊</div>
+                        <div>
+                            <p class="kpi-label">Medium Risk Students</p>
+                            <h3 id="mediumRiskStudents">0</h3>
+                            <p class="kpi-change warning">Needs Monitoring</p>
+                        </div>
+                    </article>
+
+                    <article class="kpi-card">
+                        <div class="kpi-icon">🎓</div>
+                        <div>
+                            <p class="kpi-label">Average GPA</p>
+                            <h3 id="averageGpa">0.0</h3>
+                            <p class="kpi-change positive">Institution average</p>
+                        </div>
+                    </article>
+
+                    <article class="kpi-card">
+                        <div class="kpi-icon">📉</div>
+                        <div>
+                            <p class="kpi-label">Students below 2.0</p>
+                            <h3 id="belowTwoGpa">0</h3>
+                            <p class="kpi-change negative">academic concern</p>
+                        </div>
+                    </article>
+                </section>
+
+                <!--Charts-->
+
+                <section class="chart-grid">
+                    
+                    <article class="chart-card">
+                        <div class="card-header">
+                            <h3>Risk Distribution</h3>
+                            <p>Breakdown of students rrisk levels</p>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="riskDistributionChart"></canvas>"
+                        </div>
+                    </article>
+
+                    <article class="chart-card">
+                        <div class="card-header">
+                            <h3>Risk by Program</h3>
+                            <p>Programs with the highest concentration of high-risk students.</p>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="riskProgramChart"></canvas>
+                        </div>
+                    </article>
+                </section>
+
+                <!--Table-->
+
+                <section class="bottom-grid">
+                    <article class="table-card">
+                        <div class="card-header">
+                            <h3>High Risk Students</h3>
+                            <p>Students requiring immediate academic intervention.</p>
+                        </div>
+
+                        <table class="student-table">
+                            <thead>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Program</th>
+                                    <th>GPA</th>
+                                    <th>Credits</th>
+                                    <th>Risk</th>
+                                </tr>
+                            </thead>
+                            <tbody id="riskStudentTableBody"></tbody>
+                        </table>
+                    </article>
+                </section>
+            </main>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="data.js"></script>
+    <script src="student-risk.js"></script>
+</body>
+</html>

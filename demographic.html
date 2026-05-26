@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demographic | Student Success Analytics"></title>
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+</head>
+
+<body>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="college-logo">
+                <div class="logo-icon">N</div>
+                <div>
+                    <h2>Northwood</h2>
+                    <p>Community College</p>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="index.html">Dashboard Overview</a>
+                <a href="programs.html">Programs</a>
+                <a href="enrollment.html">Enrollment</a>
+                <a href="retention.html">Retention</a>
+                <a href="completion.html">Completion</a>
+                <a href="demographics.html" class="active">Demographics</a>
+                <a href="student-risk.html">At-Risk Students</a>
+                <a href="reports.html">Reports</a>
+            </nav>
+        </aside>
+
+        <div class="main-area">
+            <header class="topbar">
+                <h1>Student Success Analytics</h1>
+                <nav class="top-nav">
+                    <a href="index.html">Overview</a>
+                    <a href="programs.html">Programs</a>
+                    <a href="demographics.html" class="active">Demographics</a>
+                    <a href="reports.html">Reports</a>
+                </nav>
+            </header>
+
+            <main class="dashboard">
+                <section class="page-header">
+                    <h2>Demographics Analytics</h2>
+                    <p>
+                        Understand the student population by age, enrollment status, gender, and geographic region.
+                    </p>
+                </section>
+
+                <!-- Drop down filter-->
+
+                <section class="filter-bar">
+                    <div>
+                        <label for="demographicsProgrammFilter">Filter by Program</label>
+                        <select id="demographicsProgramFilter">
+                            <option value="All">All Programs</option>
+                        </select>
+                    </div>
+                </section>
+
+                <!--Kpi Cards-->
+
+                <section class="kpi-grid">
+
+                    <article class="kpi-card">
+                        <div class="kpi-icon">👥</div>
+                        <div>
+                            <p class="kpi-label">Total Students</p>
+                            <h3 id="demoTotalStudents">0</h3>
+                            <p class="kpi-change positive">Current student population</p>
+                        </div>
+                    </article>
+
+                    <article class="kpi-card">
+                        <div class="kpi-icon">🎂</div>
+                        <div>
+                            <p class="kpi-label">average Age</p>
+                            <h3 id="averageAge">0</h3>
+                            <p class="kpi-change positive">Across all students</p>
+                        </div>
+                    </article>
+
+                    <article class="kpi-card">
+                        <div class="kpi-icon">🏫</div>
+                        <div>
+                            <p class="kpi-label">Full-Time Students</p>
+                            <h3 id="fullTimePercent">0%</h3>
+                            <p class="kpi-change positive">Enrollment load</p>
+                        </div>
+                    </article>
+
+                    <article class="kpi-card">
+                        <div class="kpi-icon">🗺️</div>
+                        <div>
+                            <p class="kpi-label">Out-of-County</p>
+                            <h3 id="outOfCountyPercent">0%</h3>
+                            <p class="kpi-change positive">Outside primary county</p>
+                        </div>
+                    </article>
+
+                </section>
+
+                    <!-- Charts -->
+
+                <section class="chart-grid">
+
+                    <article class="chart-card">
+                        <div class="card-header">
+                            <h3>Age Group Distribution</h3>
+                            <p>Student population grouped by age range</p>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="ageGroupChart"></canvas>
+                        </div>
+                    </article>
+
+                    <article class="chart-card">
+                        <div class="card-header">
+                            <h3>Gender Distribution</h3>
+                            <p>Student population breakdown by gender</p>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="genderChart"></canvas>
+                        </div>
+                    </article>
+                
+                </section>
+
+                <section class="chart-grid">
+
+                    <article class="chart-card">
+                        <div class="card-header">
+                            <h3>Enrollment Status</h3>
+                            <p>Full-time and part-time student distribution</p>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="enrollmentStatusChart"></canvas>
+                        </div>
+                    </article>
+
+                    <article class="chart-card">
+                        <div class="card-header">
+                            <h3>Students by County</h3>
+                            <p>Geographic Distribution of enrolled students</p>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="countyChart"></canvas>
+                        </div>
+                    </article>
+                </section>
+
+                <section class="chart-grid">
+                    <article class="chart-card map-card">
+                        <div class="card-header">
+                            <h3>Student Origin Map</h3>
+                            <p>Approximate student distribution across New Jersey counties</p>
+                        </div>
+                        <div id="studentMap"></div>
+                    </article>
+                </section>
+
+                <!--Summary Table-->
+
+                <section class="bottom-grid">
+                        
+                    <article class="table-card">
+                        <div class="card-header">
+                            <h3>Demographic Summary</h3>
+                            <p>Category-level breakdown of the student population.</p>
+                        </div>
+                        <table class="student-table">
+                            <thead>
+                                <tr>
+                                    <th>Category</th>
+                                    <th>Group</th>
+                                    <th>Students</th>
+                                    <th>Percent</th>
+                                </tr>
+                            </thead>
+                            <tbody id="demographicsTableBody"></tbody>
+                        </table>
+                    </article>
+                </section>
+            </main>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
+    <script src="data.js"></script>
+    <script src="demographic.js"></script>
+</body>
+</html>
